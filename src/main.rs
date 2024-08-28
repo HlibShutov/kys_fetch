@@ -21,18 +21,18 @@ fn get_shell() -> String {
     run!{command}.lines().next().unwrap().to_string()
 }
 
-// fn get_resolution() -> String {
-//     let output = run!{"xdpyinfo | grep dimensions"};
-//     let splitted: Vec<&str> = output.split_whitespace().collect();
-//     println!("{output:?}");
-//     splitted[1..].join(" ")
-// }
+fn get_resolution() -> String {
+    let output = run!{"xdpyinfo | grep dimensions"};
+    let splitted: Vec<&str> = output.split_whitespace().collect();
+    println!("{output:?}");
+    splitted[1..].join(" ")
+}
 
 fn main() {
     let os = get_os();
     let kernel = get_kernel();
     let uptime = get_uptime();
     let shell = get_shell();
-    // let resolution = get_resolution();
-    println!("{shell}");
+    let resolution = get_resolution();
+    println!("{resolution}");
 }
