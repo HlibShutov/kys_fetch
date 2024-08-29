@@ -2,9 +2,9 @@
 
 First own project in rust to print info about your system (i only tested it on my arch) inspired by omnifetch.
 
- **Features:**
-    - fetching info (user, hostname, os, kernel, uptime, shell, resolution, theme, cpu, gpu, memory)
-    - dynamic colorizing (based on Xdefaults)
+**Features:**
+- fetching info (user, hostname, os, kernel, uptime, shell, resolution, theme, cpu, gpu, memory)
+- dynamic colorizing (based on Xdefaults)
 
 ### Instalation
 
