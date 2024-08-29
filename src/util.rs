@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use std::process::{Command, Stdio};
 
 #[macro_export]
@@ -11,11 +12,18 @@ macro_rules! run {
 pub fn run(commands: Vec<&str>) -> String {
     if commands.len() == 1 {
         let args: Vec<&str> = commands[0].split_whitespace().collect();
-        let output = Command::new(args[0]).args(&args[1..]).output().expect("Failed to execute command");
-        String::from_utf8(output.stdout).expect("Failed to read output").trim().to_string()
+        let output = Command::new(args[0])
+            .args(&args[1..])
+            .output()
+            .expect("Failed to execute command");
+        String::from_utf8(output.stdout)
+            .expect("Failed to read output")
+            .trim()
+            .to_string()
     } else {
         let mut commands_iter = commands.into_iter();
-        let previous_command_args: Vec<&str> = commands_iter.next().unwrap().split_whitespace().collect();
+        let previous_command_args: Vec<&str> =
+            commands_iter.next().unwrap().split_whitespace().collect();
         let mut previous_command = Command::new(previous_command_args[0])
             .args(&previous_command_args[1..])
             .stdout(Stdio::piped())
@@ -37,6 +45,9 @@ pub fn run(commands: Vec<&str>) -> String {
         let result = String::from_utf8(output.stdout).unwrap();
 
         result
-
     }
+}
+
+pub fn colorize(text: &str, color: &[u8; 3]) -> ColoredString {
+    text.truecolor(color[0], color[1], color[2])
 }
