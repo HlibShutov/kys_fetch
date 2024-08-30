@@ -1,12 +1,6 @@
 use std::cmp::Ordering;
 use std::{env::var, fs};
 
-mod prelude {
-    pub use colored::{ColoredString, Colorize};
-}
-
-use prelude::*;
-
 mod util;
 use crate::util::colorize;
 
@@ -135,7 +129,7 @@ fn main() {
         };
         println!(
             "{:<40} {}",
-            logo_line.truecolor(text_color[0], text_color[1], text_color[2]),
+            colorize(logo_line, &text_color),
             info_line
         );
     }

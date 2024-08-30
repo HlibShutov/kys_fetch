@@ -1,5 +1,5 @@
-use crate::prelude::*;
 use std::process::{Command, Stdio};
+use colored::{ColoredString, Colorize};
 
 #[macro_export]
 macro_rules! run {
@@ -37,11 +37,11 @@ pub fn run(commands: Vec<&str>) -> String {
                 .stdin(Stdio::from(previous_command.stdout.unwrap()))
                 .stdout(Stdio::piped())
                 .spawn()
-                .unwrap();
+                .expect(&format!("failed to execute command {}", current_args[0]));
             previous_command = current_command;
         }
 
-        let output = previous_command.wait_with_output().unwrap();
+        let output = previous_command.wait_with_output().expect("Failed to execute piped commands");
         let result = String::from_utf8(output.stdout).unwrap();
 
         result

@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 os_info = "3"
 colored = "2.0"
+anyhow = "1.0"
